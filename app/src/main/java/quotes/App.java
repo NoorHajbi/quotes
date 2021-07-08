@@ -26,7 +26,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
 
-        FileReader filePath = new FileReader("src/main/resources/recentquotes.json");
+        FileReader filePath = new FileReader("app/src/main/resources/recentquotes.json");
         System.out.println(readingFile(filePath));
     }
 

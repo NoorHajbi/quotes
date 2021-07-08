@@ -1,7 +1,9 @@
 package quotes.bookQuote;
 
+import java.util.Arrays;
+
 public class Quote {
-    private String tags;
+    private String[] tags;
     private String author;
     private String likes;
     private final String text;
@@ -10,7 +12,7 @@ public class Quote {
         this.text = text;
     }
 
-    public Quote(String tags, String author, String likes, String text, String password, int age) {
+    public Quote(String[] tags, String author, String likes, String text) {
         this.tags = tags;
         this.author = author;
         this.likes = likes;
@@ -22,7 +24,7 @@ public class Quote {
 //        System.out.println("I am attending -> " + asacClass);
 //    }
 
-    public String getTags() {
+    public String[] getTags() {
         return tags;
     }
 
@@ -39,8 +41,11 @@ public class Quote {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return String.format("I am %s %s and I am %d years old", firstName, lastName, age);
-//    }
+    @Override
+    public String toString() {
+        return "Quote{" +
+                ", author='" + author + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

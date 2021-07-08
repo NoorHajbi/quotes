@@ -14,6 +14,10 @@ And I used GSON to parse the .json file.
 
 [comment]: <> (How do I test this functionality?)
 
+## Lab09
+Rather than using a hardcoded file of JSON data with quotes as in Lab08,
+the quotes will be grabbed from an API and display those to the user.
+
 
 
 ### Documentation

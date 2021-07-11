@@ -9,8 +9,8 @@ import quotes.bookQuote.Quote;
 
 import java.io.*;
 import java.util.*;
+import java.lang.String;
 
-//NOT SURE FROM THE SOLUTION BECAUSE OF THE INELLIJ PROBLEM
 public class App {
     public static String readingFile(FileReader path) throws IOException {
         BufferedReader reader = new BufferedReader(path);

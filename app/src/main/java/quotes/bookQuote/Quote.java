@@ -20,9 +20,6 @@ public class Quote {
 
     }
 
-//    public void attendClass(String asacClass) {
-//        System.out.println("I am attending -> " + asacClass);
-//    }
 
     public String[] getTags() {
         return tags;

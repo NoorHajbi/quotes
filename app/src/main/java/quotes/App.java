@@ -9,12 +9,13 @@ import quotes.bookQuote.Quote;
 
 import java.io.*;
 import java.util.*;
+import java.lang.String;
 
-//NOT SURE FROM THE SOLUTION BECAUSE OF THE INELLIJ PROBLEM
 public class App {
     public static String readingFile(FileReader path) throws IOException {
         BufferedReader reader = new BufferedReader(path);
         Gson gson = new Gson();
+
         //TypeToken to retrieve the type information even at runtime.
 // I want this JSON to be translated to a List of Quote objects
         List<Quote> quote = gson.fromJson(reader, new TypeToken<List<Quote>>() {
@@ -22,11 +23,12 @@ public class App {
         reader.close();
         //from index 0-137
         return quote.get((int) (Math.random() * (137 + 1) + 0)).toString();
+
     }
 
     public static void main(String[] args) throws IOException {
 
-        FileReader filePath = new FileReader("src/main/resources/recentquotes.json");
+        FileReader filePath = new FileReader("app/src/main/resources/recentquotes.json");
         System.out.println(readingFile(filePath));
     }
 

@@ -20,10 +20,6 @@ public class Quote {
 
     }
 
-//    public void attendClass(String asacClass) {
-//        System.out.println("I am attending -> " + asacClass);
-//    }
-
     public String[] getTags() {
         return tags;
     }
@@ -40,11 +36,12 @@ public class Quote {
         return text;
     }
 
-
     @Override
     public String toString() {
         return "Quote{" +
+                "tags=" + Arrays.toString(tags) +
                 ", author='" + author + '\'' +
+                ", likes='" + likes + '\'' +
                 ", text='" + text + '\'' +
                 '}';
     }

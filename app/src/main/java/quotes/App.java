@@ -15,6 +15,7 @@ public class App {
     public static String readingFile(FileReader path) throws IOException {
         BufferedReader reader = new BufferedReader(path);
         Gson gson = new Gson();
+
         //TypeToken to retrieve the type information even at runtime.
 // I want this JSON to be translated to a List of Quote objects
         List<Quote> quote = gson.fromJson(reader, new TypeToken<List<Quote>>() {
@@ -22,6 +23,7 @@ public class App {
         reader.close();
         //from index 0-137
         return quote.get((int) (Math.random() * (137 + 1) + 0)).toString();
+
     }
 
     public static void main(String[] args) throws IOException {

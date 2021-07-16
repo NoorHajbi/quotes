@@ -3,10 +3,52 @@
  */
 package quotes;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import org.junit.Test;
+import quotes.bookQuote.Quote;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
-//Testing
-//        for each of the Feature Tasks.
+
 public class AppTest {
+    @Test
+    public void testQuotes() {
+        String[] hello = {"Hello", "World"};
+        Quote quote = new Quote(hello, "Noor", "2", "Hello World");
+        assertNotNull(quote);
+        assertNotNull(quote.getTags());
+        assertEquals("Noor", quote.getAuthor());
+        assertEquals("2", quote.getLikes());
+        assertEquals("Hello World", quote.getText());
+    }
+
+    @Test
+    public void testAtAll() throws FileNotFoundException {
+        Quote quote = new Quote("../app/src/test/resources/recentquotes.json");
+        assertNotNull(quote);
+        assertNotNull(Arrays.toString(quote.getTags()));
+        assertNotNull(quote.getText());
+//
+        BufferedReader reader = new BufferedReader(
+                new FileReader("../app/src/test/resources/recentquotes.json"));
+        assertNotNull(reader);
+    }
+
+    @Test
+    public void testReadingRandom() throws FileNotFoundException {
+        BufferedReader reader =
+                new BufferedReader(new FileReader("../app/src/test/resources/recentquotes.json"));
+        Gson gson = new Gson();
+        List<Quote> quote = gson.fromJson(reader, new TypeToken<List<Quote>>() {
+        }.getType());
+        String quote1 = quote.get((int) (Math.random() * (137 + 1) + 0)).toString();
+        assertNotNull(quote1);
+    }
 
 }

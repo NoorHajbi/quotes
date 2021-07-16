@@ -20,7 +20,6 @@ public class Quote {
 
     }
 
-
     public String[] getTags() {
         return tags;
     }
@@ -37,11 +36,12 @@ public class Quote {
         return text;
     }
 
-
     @Override
     public String toString() {
         return "Quote{" +
+                "tags=" + Arrays.toString(tags) +
                 ", author='" + author + '\'' +
+                ", likes='" + likes + '\'' +
                 ", text='" + text + '\'' +
                 '}';
     }

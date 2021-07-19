@@ -10,10 +10,10 @@ And I used GSON to parse the .json file.
 Rather than using a hardcoded file of JSON data with quotes as in Lab08,
 the quotes will be grabbed from an API and display those to the user.
 
-I have a class called **QuoteAPI**, That includes API data
+I have a class called **QuoteAPI**, That includes the API's data
 and in the main,
-When the user run the code it will fetch a quote from the API and display its text, and the author to the user,
-and If there is any problem with the connection a local quote will be fetched.
+When we run the code it will fetch a quote from the API and display its text, and its author to the user,
+So, If there is any problem with the connection a local quote will be fetched.
 
 ![Source](https://stackoverflow.com/questions/3869372/java-io-ioexception-server-returned-http-response-code-403-for-url)
 

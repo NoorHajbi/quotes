@@ -16,7 +16,7 @@ public class QuoteAPI {
         this.quoteAuthor = quoteAuthor;
         this.senderName = senderName;
         this.quoteText = quoteText;
-        this.quoteLink =quoteLink;
+        this.quoteLink = quoteLink;
 
     }
 

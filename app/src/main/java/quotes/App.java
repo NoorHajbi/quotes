@@ -63,7 +63,7 @@ public class App {
             // Added
             gson = gson.newBuilder().setPrettyPrinting().create();
             //Added inside Quote
-            Quote quote = new Quote(null, quoteData.getAuthor(), null, quoteData.getText());
+            Quote quote = new Quote(quoteData.getAuthor(), quoteData.getText());
             myQuote.add(quote);
             Writer writer = new FileWriter(quotesFile);
             gson.toJson(myQuote, writer);

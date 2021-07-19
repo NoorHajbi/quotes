@@ -15,7 +15,7 @@ and in the main,
 When we run the code it will fetch a quote from the API and display its text, and its author to the user,
 So, If there is any problem with the connection a local quote will be fetched.
 
-![Source](https://stackoverflow.com/questions/3869372/java-io-ioexception-server-returned-http-response-code-403-for-url)
+[Source](https://stackoverflow.com/questions/3869372/java-io-ioexception-server-returned-http-response-code-403-for-url)
 
 
 ### Documentation

@@ -5,31 +5,76 @@ package quotes;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import quotes.bookQuote.Quote;
+import quotes.bookQuote.QuoteAPI;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 import java.lang.String;
 
 public class App {
+    //Random
     public static String readingFile(FileReader path) throws IOException {
         BufferedReader reader = new BufferedReader(path);
         Gson gson = new Gson();
-
         //TypeToken to retrieve the type information even at runtime.
-// I want this JSON to be translated to a List of Quote objects
+        // I want this JSON to be translated to a List of Quote objects
         List<Quote> quote = gson.fromJson(reader, new TypeToken<List<Quote>>() {
         }.getType());
         reader.close();
         //from index 0-137
         return quote.get((int) (Math.random() * (137 + 1) + 0)).toString();
-
     }
+
 
     public static void main(String[] args) throws IOException {
-
-        FileReader filePath = new FileReader("app/src/main/resources/recentquotes.json");
-        System.out.println(readingFile(filePath));
+        String quotesFile = "app/src/main/resources/recentquotes.json";
+        FileReader filePath = new FileReader(quotesFile);
+        /********************Lab9***********************/
+        try {
+            String url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            // for some windows versions
+            //if you use HttpURLConnection you should be able to access the requested web page from java.
+            //So you should use:
+            connection.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
+                    + "Windows NT 5.1; en-US; rv:1.8.0.11) ");
+            connection.connect();
+            //I don't need it because of try/catch
+            //int responseCode = connection.getResponseCode();
+            // if (responseCode == HttpURLConnection.HTTP_OK) {
+            // HTTP CONNECT VERB
+            // DELETE PUT POST GET OPTIONS HEAD PATCH
+            System.out.println(connection);
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String data = bufferedReader.readLine();
+            Gson gson = new Gson();
+            BufferedReader reader = new BufferedReader(filePath);
+            List<Quote> myQuote = gson.fromJson(reader, new TypeToken<List<Quote>>() {
+            }.getType());
+            QuoteAPI quoteData = gson.fromJson(data, QuoteAPI.class);
+            // Added
+            gson = gson.newBuilder().setPrettyPrinting().create();
+            //Added inside Quote
+            Quote quote = new Quote(quoteData.getAuthor(), quoteData.getText());
+            myQuote.add(quote);
+            Writer writer = new FileWriter(quotesFile);
+            gson.toJson(myQuote, writer);
+            writer.close();
+            bufferedReader.close();
+            reader.close();
+            System.out.println("Author >>> " + quoteData.getAuthor());
+            System.out.println("Quote >>> " + quoteData.getText());
+        } catch (IOException | JsonSyntaxException e) {
+            System.out.println(readingFile(filePath));
+            e.printStackTrace();
+        }
     }
-
 }

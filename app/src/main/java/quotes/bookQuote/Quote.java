@@ -12,6 +12,12 @@ public class Quote {
         this.text = text;
     }
 
+    public Quote(String author, String text) {
+        this.author = author;
+        this.text = text;
+
+    }
+
     public Quote(String[] tags, String author, String likes, String text) {
         this.tags = tags;
         this.author = author;

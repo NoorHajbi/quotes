@@ -1,37 +1,19 @@
-package quotes;
+package quotes.lab09Tests;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import org.junit.Test;
 import quotes.bookQuote.QuoteAPI;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class Lab09Test {
-    @Test
-    public void testQuoteAPI() {
-        QuoteAPI quote = new QuoteAPI("www.", "Noor", "Sara", "Hello World", ".com");
-        assertNotNull(quote);
-        assertEquals("www.", quote.getSenderLink());
-        assertEquals("Noor", quote.getAuthor());
-        assertEquals("Sara", quote.getSenderName());
-        assertEquals("Hello World", quote.getText());
-        assertEquals(".com", quote.getQuoteLink());
-        QuoteAPI quote2 = new QuoteAPI("Hello World");
-        assertEquals("Hello World", quote2.getText());
-    }
-
-    @Test
-    public void testConnection() throws IOException {
-        String url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-        assertTrue(connection.getResponseCode() != 200);
-    }
-
+public class testMain {
     @Test
     public void testMain() throws IOException {
         String url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
@@ -58,5 +40,5 @@ public class Lab09Test {
         //Test2
         assertNotNull(quoteData.getAuthor());
         assertNotNull(quoteData.getText());
-    }
+}
 }
